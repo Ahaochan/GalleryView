@@ -2,7 +2,7 @@
 
 ![GalleryView.gif](https://github.com/Ahaochan/GalleryView/blob/master/GalleryView.gif)
 
-通过操作canvas实现的可缩放的recyclerView,可用于漫画app的阅读界面。
+通过操作canvas实现的可缩放(Zoomable)的recyclerView,可用于漫画app的阅读界面。
 
 支持：
 - 多指缩放
