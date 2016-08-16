@@ -43,36 +43,43 @@ compile 'com.ahaochan:GalleryView:0.0.1'
 
 # use
 ```
-<ViewGroup ...
+<FrameLayout >
 
-	<android.support.v4.view.ViewPager
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
-		
-    <com.ahao.GalleryView.ui.GalleryView
-        android:id="@+id/tab_layout"
+    <com.ahao.galleryview.GalleryView
+        android:id="@+id/view_gallery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textSize="12sp"
-        app:textGravity="bottom"
-        app:visibleCount="3"
-        app:indicatorColor="@color/colorAccent"/>
-</ViewGroup>
-```
+        app:minScaleFactor="1.0"
+        app:maxScaleFactor="4.0"
+        app:autoScaleTime="5"
+        >
+    </com.ahao.galleryview.GalleryView>
 
+    <include layout="@layout/view_empty"/>
+    <include layout="@layout/view_setting"/>
+</FrameLayout>
 ```
-GalleryView.setOnTabClickListener(new OnTabClickListener() {
+```
+GalleryView galleryView = (GalleryView) findViewById(R.id.view_gallery);
+View emptyView = findViewById(R.id.view_empty);
+View settingView = findViewById(R.id.view_setting);
+
+galleryView.setEmptyView(emptyView);
+galleryView.setOnGestureListener(new GalleryView.OnGestureListener() {
     @Override
-        public void OnTabClick(View view, int position) {
-			viewPager.setCurrentItem(position);
-        }
-    });
-viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+    public boolean onScale(ScaleGestureDetector detector) {
+        settingView.setVisibility(View.GONE);
+        return true;
+    }
     @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        GalleryView.scrollToTab(position, positionOffset);
-        }
-    });
+    public boolean onSingleTapConfirmed(MotionEvent e) {
+        settingView.setVisibility(settingView.getVisibility()==View.VISIBLE?View.GONE:View.VISIBLE);
+        return true;
+    }
+    @Override
+    public boolean onDoubleTap(MotionEvent e) {
+        settingView.setVisibility(View.GONE);
+        return true;
+    }
+});
 ```
