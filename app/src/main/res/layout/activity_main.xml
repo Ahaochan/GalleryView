@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.ahao.galleryview.GalleryView
+        android:id="@+id/view_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:minScaleFactor="1.0"
+        app:maxScaleFactor="4.0"
+        app:autoScaleTime="5"
+        >
+    </com.ahao.galleryview.GalleryView>
+
+    <include layout="@layout/view_empty"/>
+    <include layout="@layout/view_setting"/>
+</FrameLayout>
