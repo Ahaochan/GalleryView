@@ -60,11 +60,8 @@ compile 'com.ahaochan:GalleryView:0.0.1'
 </FrameLayout>
 ```
 ```
-GalleryView galleryView = (GalleryView) findViewById(R.id.view_gallery);
-View emptyView = findViewById(R.id.view_empty);
-View settingView = findViewById(R.id.view_setting);
-
 galleryView.setEmptyView(emptyView);
+galleryView.setAdapter(adapter);
 galleryView.setOnGestureListener(new GalleryView.OnGestureListener() {
     @Override
     public boolean onScale(ScaleGestureDetector detector) {
